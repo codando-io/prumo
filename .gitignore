@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# data pipeline outputs
+/data/raw
+/data/staging
+/data/photos
+/data/*.duckdb
+/data/*.duckdb.wal
+/data/snapshots
+/data/pncp
+/data/proposals
+/data/tessdata
+
+# local tooling
+/.claude
+/.tmp
+/.ux

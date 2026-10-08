@@ -1,0 +1,76 @@
+{
+  "about": "Índice Prumo dos planos de governo: cada tema é uma lista pública de termos procurados no texto (sem acentos, em minúsculas). Um termo terminado em * casa qualquer palavra que comece com ele; os demais casam a palavra ou expressão exata. Uma página entra no tema quando tem pelo menos 2 ocorrências. Não é um resumo nem uma interpretação do documento.",
+  "minHitsPerPage": 2,
+  "topics": [
+    {
+      "key": "economia",
+      "label": "Economia",
+      "terms": ["economi*", "fiscal", "fiscais", "tribut*", "imposto*", "inflac*", "juros", "pib", "investiment*", "credito", "industri*", "comercio", "empreendedor*", "microempres*", "pequenas empresas", "divida publica", "orcament*", "desenvolvimento economico", "crescimento economico", "privatiz*", "concess*"]
+    },
+    {
+      "key": "trabalho",
+      "label": "Trabalho e emprego",
+      "terms": ["emprego*", "desemprego", "trabalhador*", "qualificacao profissional", "carteira assinada", "salario minimo", "geracao de renda", "mercado de trabalho", "informalidade", "primeiro emprego"]
+    },
+    {
+      "key": "saude",
+      "label": "Saúde",
+      "terms": ["saude", "sus", "hospita*", "medico*", "medica*", "medicament*", "ubs", "upa", "upas", "vacin*", "atencao basica", "atencao primaria", "enfermag*", "doenca*", "saude mental", "sanitari*", "leitos", "cirurgia*"]
+    },
+    {
+      "key": "educacao",
+      "label": "Educação",
+      "terms": ["educac*", "escola*", "ensino", "professor*", "alfabetiz*", "creche*", "universidade*", "estudante*", "aluno*", "fundeb", "educacional", "pedagogic*", "tempo integral", "evasao escolar"]
+    },
+    {
+      "key": "seguranca",
+      "label": "Segurança pública",
+      "terms": ["seguranca publica", "policia*", "policial", "policiais", "crime*", "criminal*", "criminalidade", "violencia*", "sistema prisional", "presidio*", "homicidio*", "trafico", "faccao*", "faccoes", "guarda municipal", "guardas municipais", "armas", "inteligencia policial"]
+    },
+    {
+      "key": "infraestrutura",
+      "label": "Infraestrutura e mobilidade",
+      "terms": ["infraestrutura", "rodovia*", "ferrovia*", "estrada*", "porto*", "aeroporto*", "saneamento", "energia", "eletrica", "mobilidade", "transporte publico", "transporte*", "obras", "pavimentac*", "logistic*", "metro", "onibus", "agua potavel", "esgoto"]
+    },
+    {
+      "key": "ambiente",
+      "label": "Meio ambiente e clima",
+      "terms": ["meio ambiente", "ambiental", "ambientais", "desmatament*", "clima", "climatic*", "sustentab*", "sustentave*", "floresta*", "amazonia", "recursos hidricos", "residuos", "reciclag*", "poluic*", "biodiversidade", "carbono", "queimadas", "energia renovavel", "energias renovaveis", "transicao energetica", "transicao ecologica"]
+    },
+    {
+      "key": "social",
+      "label": "Assistência e políticas sociais",
+      "terms": ["assistencia social", "pobreza", "fome", "bolsa familia", "cadastro unico", "cadunico", "vulnerab*", "desigualdade*", "inclusao social", "cras", "creas", "idoso*", "pessoa com deficiencia", "pessoas com deficiencia", "seguranca alimentar", "renda basica", "transferencia de renda", "populacao em situacao de rua"]
+    },
+    {
+      "key": "habitacao",
+      "label": "Habitação e cidades",
+      "terms": ["habitac*", "moradia*", "minha casa", "regularizacao fundiaria", "aluguel social", "deficit habitacional", "urbanismo", "urbano*", "urbana*", "periferia*"]
+    },
+    {
+      "key": "agricultura",
+      "label": "Agricultura e campo",
+      "terms": ["agricult*", "agro", "agropecuari*", "pecuari*", "agronegocio", "rural", "rurais", "produtor rural", "produtores rurais", "reforma agraria", "assentament*", "pesca", "agroecolog*", "agricultura familiar"]
+    },
+    {
+      "key": "ciencia",
+      "label": "Ciência, tecnologia e inovação",
+      "terms": ["ciencia*", "cientific*", "tecnologi*", "inovac*", "inovador*", "pesquisa*", "conectividade", "internet", "startup*", "transformacao digital", "inteligencia artificial", "banda larga"]
+    },
+    {
+      "key": "cultura",
+      "label": "Cultura, esporte, lazer e turismo",
+      "terms": ["cultura", "cultural", "culturais", "esporte*", "esportiv*", "lazer", "turismo", "turistic*", "patrimonio historico", "artistas", "economia criativa"]
+    },
+    {
+      "key": "gestao",
+      "label": "Gestão pública e instituições",
+      "terms": ["gestao publica", "administracao publica", "transparencia", "corrupcao", "reforma administrativa", "reforma do estado", "servidor publico", "servidores publicos", "eficiencia", "desburocratiz*", "governo digital", "controle social", "participacao popular", "participacao social", "democracia", "federativ*", "municipalismo", "previdencia"]
+    },
+    {
+      "key": "direitos",
+      "label": "Direitos humanos e igualdade",
+      "terms": ["direitos humanos", "mulher*", "igualdade de genero", "violencia contra a mulher", "feminicidio", "racismo", "racial", "raciais", "indigena*", "quilombola*", "lgbt*", "juventude", "jovens", "crianca*", "adolescente*", "diversidade"]
+    }
+  ]
+}

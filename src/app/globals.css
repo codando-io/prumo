@@ -1,26 +1,340 @@
 @import "tailwindcss";
 
+/*
+ * Prumo design tokens (v2). See docs/DESIGN.md.
+ * Neutral graphite / paper surfaces, one interaction accent (brass), and exactly three data
+ * meanings with colour: public money, private money, spending. Sub-categories are steps of the
+ * same hue, separated by gaps and identified by labels. Parties never get a colour.
+ * public↔private validated for CVD separation in both modes (ΔE ≥ 19).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  color-scheme: light;
+  --bg: #f6f6f4;
+  --bg-raised: #ffffff;
+  --bg-sunken: #efefec;
+  --ink: #16181b;
+  --ink-2: #4a4f57;
+  --muted: #70757d;
+  --rule: #e3e3df;
+  --rule-strong: #cfcfca;
+  --hover: rgba(22, 24, 27, 0.045);
+  --accent: #86671c;
+  --accent-soft: rgba(134, 103, 28, 0.12);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --public: #2e64b5;
+  --public-2: rgba(46, 100, 181, 0.62);
+  --public-3: rgba(46, 100, 181, 0.36);
+  --private: #c0601f;
+  --private-2: rgba(192, 96, 31, 0.66);
+  --private-3: rgba(192, 96, 31, 0.42);
+  --private-4: rgba(192, 96, 31, 0.26);
+  --spend: #6b717a;
+  --spend-2: rgba(107, 113, 122, 0.55);
+  --elected: #1d6b45;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bg: #111315;
+    --bg-raised: #181b1e;
+    --bg-sunken: #0c0d0f;
+    --ink: #ecedee;
+    --ink-2: #b3b8be;
+    --muted: #868c93;
+    --rule: #25292d;
+    --rule-strong: #383d43;
+    --hover: rgba(236, 237, 238, 0.05);
+    --accent: #d4b263;
+    --accent-soft: rgba(212, 178, 99, 0.14);
+    --public: #4f86d3;
+    --public-2: rgba(79, 134, 211, 0.62);
+    --public-3: rgba(79, 134, 211, 0.38);
+    --private: #cf7a3e;
+    --private-2: rgba(207, 122, 62, 0.66);
+    --private-3: rgba(207, 122, 62, 0.44);
+    --private-4: rgba(207, 122, 62, 0.28);
+    --spend: #8b929a;
+    --spend-2: rgba(139, 146, 154, 0.55);
+    --elected: #7cc79d;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111315;
+  --bg-raised: #181b1e;
+  --bg-sunken: #0c0d0f;
+  --ink: #ecedee;
+  --ink-2: #b3b8be;
+  --muted: #868c93;
+  --rule: #25292d;
+  --rule-strong: #383d43;
+  --hover: rgba(236, 237, 238, 0.05);
+  --accent: #d4b263;
+  --accent-soft: rgba(212, 178, 99, 0.14);
+  --public: #4f86d3;
+  --public-2: rgba(79, 134, 211, 0.62);
+  --public-3: rgba(79, 134, 211, 0.38);
+  --private: #cf7a3e;
+  --private-2: rgba(207, 122, 62, 0.66);
+  --private-3: rgba(207, 122, 62, 0.44);
+  --private-4: rgba(207, 122, 62, 0.28);
+  --spend: #8b929a;
+  --spend-2: rgba(139, 146, 154, 0.55);
+  --elected: #7cc79d;
+}
+
+/* Aliases for the first-generation token names (kept so every page shares one palette). */
+:root,
+:root[data-theme="dark"] {
+  --page: var(--bg);
+  --surface: var(--bg);
+  --surface-2: var(--bg-sunken);
+  --axis: var(--rule-strong);
+  --brass: var(--accent);
+  --brass-soft: var(--accent-soft);
+  --fund-fefc: var(--public);
+  --fund-fp: var(--public-2);
+  --fund-pf: var(--private);
+  --fund-proprios: var(--private-2);
+  --fund-coletivo: var(--private-3);
+  --fund-partido: var(--private-3);
+  --fund-outras: var(--private-4);
+  --spend-soft: var(--spend-2);
+  --tone-elected: var(--elected);
+  --tone-elected-bg: transparent;
+  --tone-runoff: var(--ink);
+  --tone-runoff-bg: transparent;
+  --signal: var(--ink-2);
+  --signal-bg: transparent;
+  --official: var(--ink-2);
+  --official-bg: transparent;
+  --calc: var(--ink-2);
+  --calc-bg: transparent;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunken: var(--bg-sunken);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-public: var(--public);
+  --color-private: var(--private);
+  --color-spend: var(--spend);
+  /* legacy utility names */
+  --color-page: var(--bg);
+  --color-surface: var(--bg);
+  --color-surface-2: var(--bg-sunken);
+  --color-axis: var(--rule-strong);
+  --color-brass: var(--accent);
+  --color-signal: var(--ink-2);
+  --color-signal-bg: transparent;
+  --color-official: var(--ink-2);
+  --color-official-bg: transparent;
+  --color-calc: var(--ink-2);
+  --color-calc-bg: transparent;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Grid items default to min-width: auto, so one long unbreakable line would stretch a track
+     past the viewport on phones. */
+  .grid > * {
+    min-width: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Editorial type: serif for titles and section questions only. */
+  .title {
+    font-family: var(--font-newsreader), Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.1rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72;
+  }
+  .question {
+    font-family: var(--font-newsreader), Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.55rem, 1.25rem + 1vw, 1.95rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 48;
+  }
+  .lede {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 66ch;
+  }
+  .lede strong,
+  .lede b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  /* Figures: tabular, medium weight, never coloured. */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .wide {
+    font-variation-settings: "wdth" 112;
+    letter-spacing: -0.01em;
+  }
+  .big {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variation-settings: "wdth" 108;
+  }
+
+  .link {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .link:hover {
+    text-decoration-color: var(--accent);
+  }
+  /* Quiet action links ("Comparar", "Ver conexões"). */
+  .action {
+    color: var(--ink-2);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+  }
+  .action:hover {
+    color: var(--ink);
+    text-decoration-color: var(--accent);
+  }
+
+  /* Sections: hairline + rhythm, no containers. */
+  .section {
+    border-top: 1px solid var(--rule);
+    padding-top: 3rem;
+    margin-top: 3.5rem;
+  }
+  /* Interactive surfaces only (popovers, palette, inputs). */
+  .panel {
+    background: var(--bg);
+  }
+  .raised {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    box-shadow: 0 18px 50px -24px rgba(0, 0, 0, 0.45);
+  }
+  .field {
+    height: 2.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-raised);
+    padding: 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    outline: none;
+  }
+  .field:focus {
+    border-color: var(--accent);
+  }
+
+  /* Data tables. */
+  .dt {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.90625rem;
+    line-height: 1.45;
+  }
+  .dt thead th {
+    position: sticky;
+    top: 60px;
+    z-index: 2;
+    background: var(--bg);
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+  .dt tbody td,
+  .dt tbody th {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    text-align: left;
+    font-weight: 400;
+  }
+  .dt tbody tr:hover > * {
+    background: var(--hover);
+  }
+  .dt .n {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .dt .e {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .dt .s {
+    color: var(--ink-2);
+  }
+  .dt th:first-child,
+  .dt td:first-child {
+    padding-left: 0;
+  }
+  .dt th:last-child,
+  .dt td:last-child {
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
