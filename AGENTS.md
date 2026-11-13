@@ -123,6 +123,7 @@ ETL prints progress to stdout. Data freshness is visible in the app
 | Item | Value |
 |---|---|
 | CI on every change | missing |
+| Merge gate (required checks and reviewers, resolved threads, stale approvals dismissed) | missing: `main` has no branch protection, ruleset, or CODEOWNERS (checked 2026-11-13) |
 | Hosting / provider | (unknown - ask the team) |
 | Environments | (unknown - ask the team) |
 | Staging gate | missing |
