@@ -1,0 +1,21 @@
+# Engineering harness contract for this repository.
+# Flat keys and inline lists only: tools read this file without a YAML parser.
+# Project facts (architecture, delivery, observability) belong in AGENTS.md.
+
+# Harness line this project was adopted or last upgraded against.
+# 0.x: "major.minor" (minor bumps are breaking). From 1.0: "major".
+harness: "0.3"
+
+# Stack profiles, applied in order. See the harness profiles/README.md.
+# None fits: the app is Next.js (no harness profile) and the ETL is Node batch
+# scripts without an HTTP server, outside node-backend's Detection.
+profiles: []
+
+# Where this project keeps Architecture Decision Records.
+adr_dir: docs/adr
+
+# The fastest check that proves the tree builds. The plugin's Stop hook runs it
+# when Claude finishes with uncommitted changes and sends Claude back when it
+# fails. `next typegen` writes the route types (PageProps) that tsc needs and
+# requires Node 20.9+ first on PATH.
+stop_check: npx --no -- next typegen && npx --no -- tsc --noEmit

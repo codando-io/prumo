@@ -1,0 +1,41 @@
+{
+  "extraKnownMarketplaces": {
+    "engineering-harness": {
+      "source": {
+        "source": "github",
+        "repo": "codando-io/officina"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "eng@engineering-harness": true
+  },
+  "permissions": {
+    "ask": [
+      "Bash(git push *--force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(gh pr merge *)",
+      "Bash(gh release create *)",
+      "Bash(npm publish*)",
+      "Bash(dotnet nuget push *)",
+      "Bash(docker push *)",
+      "Bash(dotnet ef database drop*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(kubectl delete *)",
+      "Bash(helm uninstall *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Read(*.pfx)",
+      "Read(~/.microsoft/usersecrets/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.kube/**)"
+    ]
+  }
+}
