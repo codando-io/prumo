@@ -1,0 +1,23 @@
+# Checks this project's engineering-harness files on every pull request that
+# touches them: a valid .engineering/harness.yaml, overrides that name existing
+# skills, and a harness line that a released harness version serves.
+# Copy to .github/workflows/ (GitHub) or .forgejo/workflows/ (Forgejo).
+name: engineering-harness
+on:
+  pull_request:
+    paths: [".engineering/**", "AGENTS.md", "CLAUDE.md"]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check against the declared harness line
+        run: |
+          repo=https://github.com/codando-io/officina.git
+          line=$(sed -n 's/^harness:[[:space:]]*["'\'']\{0,1\}\([0-9][0-9.]*\).*/\1/p' .engineering/harness.yaml)
+          tag=$(git ls-remote --tags --refs --sort=-v:refname "$repo" "v$line.*" | head -1 | sed 's|.*refs/tags/||')
+          test -n "$tag" || { echo "No released harness serves line $line"; exit 1; }
+          git clone --quiet --depth 1 --branch "$tag" "$repo" "$RUNNER_TEMP/harness"
+          "$RUNNER_TEMP/harness/bin/eng-context" --check .
